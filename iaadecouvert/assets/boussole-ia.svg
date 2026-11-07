@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" width="600" height="200">
+  <!-- Boussole stylisée -->
+  <g transform="translate(100, 100)">
+    <!-- Cercle extérieur -->
+    <circle cx="0" cy="0" r="65" fill="none" stroke="#0F2944" stroke-width="4"/>
+    <!-- Cercle intérieur subtil -->
+    <circle cx="0" cy="0" r="48" fill="none" stroke="#0F2944" stroke-width="1" opacity="0.3"/>
+    <!-- Aiguille (forme losange) -->
+    <polygon points="0,-50 12,0 0,50 -12,0" fill="#0F2944"/>
+    <polygon points="0,-50 12,0 0,0" fill="#1E5A8E"/>
+    <!-- Point central -->
+    <circle cx="0" cy="0" r="6" fill="#FAF7F2"/>
+    <circle cx="0" cy="0" r="3" fill="#0F2944"/>
+    <!-- Marqueurs cardinaux -->
+    <text x="0" y="-72" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0F2944" text-anchor="middle">N</text>
+  </g>
+  <!-- Wordmark -->
+  <text x="200" y="95" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="#0F2944">Boussole</text>
+  <text x="200" y="140" font-family="Arial, sans-serif" font-size="36" font-weight="300" fill="#1E5A8E" letter-spacing="6">IA</text>
+</svg>

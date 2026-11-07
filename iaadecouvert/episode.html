@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Épisode | IA à découvert</title>
+<link rel="icon" href="assets/picto.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="notice">Projet étudiant fictif réalisé dans le cadre du cours SIA2020 de l'Université de Montréal</div>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="index.html">IA <span>à</span> découvert</a>
+    <nav>
+      <a href="index.html#episodes">Épisodes</a>
+      <a href="index.html#a-propos">À propos</a>
+      <a href="index.html#infolettre">Infolettre</a>
+      <a href="index.html#ecouter">Écouter</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section><div class="wrap hero" id="hero"></div></section>
+  <section><div class="wrap">
+    <h2>L'article</h2>
+    <div class="article" id="article"></div>
+  </div></section>
+  <section><div class="wrap">
+    <details class="transcript">
+      <summary>Transcription intégrale</summary>
+      <div id="transcript" style="margin-top:14px"></div>
+    </details>
+  </div></section>
+  <section><div class="wrap two">
+    <div>
+      <h2>Sources</h2>
+      <ul class="sources" id="sources"></ul>
+    </div>
+    <div class="label">
+      <h3>Étiquette de transparence IA</h3>
+      <p id="transparency"></p>
+    </div>
+  </div></section>
+  <section style="border-bottom:0"><div class="wrap" id="next"></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><img src="assets/boussole-ia-inverse.svg" alt="Boussole IA"></div>
+    <div>
+      <p>Une production Boussole IA</p>
+      <p>Projet étudiant fictif réalisé dans le cadre du cours SIA2020 de l'Université de Montréal · Équipe 5 · Automne 2026</p>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+  const id = Number(new URLSearchParams(location.search).get("ep")) || 1;
+  const ep = EPISODES.find(e => e.id === id) || EPISODES[0];
+  const soon = (what) => `<span class="soon">${what} bientôt disponible</span>`;
+  document.title = ep.title + " | IA à découvert";
+
+  document.getElementById("hero").innerHTML = `
+    <div class="cover"><img src="${ep.image || PODCAST.cover}" alt="${ep.title}"></div>
+    <div>
+      <div class="meta">${ep.number} · ${ep.date}${ep.duration ? " · " + ep.duration : ""}</div>
+      <h1>${ep.title}</h1>
+      <p>${ep.description}</p>
+      ${ep.audio ? `<audio controls preload="none" src="${ep.audio}"></audio>` : soon("Audio")}
+    </div>`;
+
+  document.getElementById("article").innerHTML = ep.article || soon("Article");
+  document.getElementById("transcript").innerHTML = ep.transcript
+    ? ep.transcript.split(/\n\s*\n/).map(p => `<p>${p}</p>`).join("")
+    : soon("Transcription");
+  document.getElementById("sources").innerHTML = ep.sources.length
+    ? ep.sources.map(s => `<li>${s}</li>`).join("")
+    : `<li>${soon("Sources")}</li>`;
+  document.getElementById("transparency").textContent = PODCAST.transparency;
+
+  const other = EPISODES.find(e => e.id !== ep.id);
+  if (other) document.getElementById("next").innerHTML = `
+    <div class="eyebrow">À écouter aussi</div>
+    <h2 style="margin:8px 0 12px">${other.number} : ${other.title}</h2>
+    <a class="btn" href="episode.html?ep=${other.id}">Écouter</a>
+    <a class="btn ghost" href="index.html#infolettre">S'abonner à l'infolettre</a>`;
+</script>
+</body>
+</html>

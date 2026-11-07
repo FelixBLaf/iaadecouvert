@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>IA à découvert | Balado de Boussole IA</title>
+<meta name="description" content="IA à découvert, le balado de Boussole IA. Projet étudiant fictif, SIA2020, Université de Montréal.">
+<link rel="icon" href="assets/picto.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="notice">Projet étudiant fictif réalisé dans le cadre du cours SIA2020 de l'Université de Montréal</div>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="index.html">IA <span>à</span> découvert</a>
+    <nav>
+      <a href="#episodes">Épisodes</a>
+      <a href="#a-propos">À propos</a>
+      <a href="#infolettre">Infolettre</a>
+      <a href="#ecouter">Écouter</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap hero" id="hero"></div>
+  </section>
+
+  <section class="teaser">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow" style="color:var(--sand)">Bande-annonce</div>
+        <h2>Le balado en 30 secondes</h2>
+        <p id="promise"></p>
+      </div>
+      <video id="teaser" controls playsinline preload="metadata"></video>
+    </div>
+  </section>
+
+  <section id="episodes">
+    <div class="wrap">
+      <h2>Tous les épisodes</h2>
+      <div class="episodes" id="ep-list"></div>
+    </div>
+  </section>
+
+  <section id="a-propos">
+    <div class="wrap two">
+      <div>
+        <div class="eyebrow">Nouveau ici ?</div>
+        <h2 style="margin-top:8px">À propos du balado</h2>
+        <p id="about"></p>
+        <p class="team" id="team"></p>
+      </div>
+      <div class="label">
+        <h3>Étiquette de transparence IA</h3>
+        <p id="transparency"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter" id="infolettre">
+    <div class="wrap">
+      <h2 style="margin-bottom:8px">Recevez chaque nouvel épisode</h2>
+      <p>L'infolettre de Boussole IA : un courriel par épisode, avec l'article et les sources.</p>
+      <form id="nl-form">
+        <input type="email" id="nl-email" placeholder="votre@courriel.com" aria-label="Courriel" required>
+        <button class="btn" type="submit">Je m'abonne</button>
+      </form>
+      <p class="small">Formulaire fictif : aucune donnée n'est collectée ni transmise (Loi 25).</p>
+      <p class="ok" id="nl-ok" hidden>Merci ! (Démonstration : aucune inscription réelle n'a été faite.)</p>
+    </div>
+  </section>
+
+  <section id="ecouter" style="border-bottom:0">
+    <div class="wrap">
+      <h2>Écouter et s'abonner</h2>
+      <div class="platforms" id="platforms"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img src="assets/boussole-ia-inverse.svg" alt="Boussole IA">
+    </div>
+    <div>
+      <p>Une production Boussole IA</p>
+      <p>Projet étudiant fictif réalisé dans le cadre du cours SIA2020 de l'Université de Montréal · Équipe 5 · Automne 2026</p>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+  const ep = EPISODES[0];
+  const cover = (src, alt) => `<div class="cover"><img src="${src || PODCAST.cover}" alt="${alt}"></div>`;
+  const player = (src) => src ? `<audio controls preload="none" src="${src}"></audio>` : `<span class="soon">Audio bientôt disponible</span>`;
+
+  document.getElementById("hero").innerHTML = `
+    ${cover(ep.image, ep.title)}
+    <div>
+      <div class="eyebrow">Nouvel épisode</div>
+      <div class="meta">${ep.number} · ${ep.date}${ep.duration ? " · " + ep.duration : ""}</div>
+      <h1><a href="episode.html?ep=${ep.id}">${ep.title}</a></h1>
+      <p>${ep.description}</p>
+      ${player(ep.audio)}
+      <div class="actions">
+        <a class="btn" href="episode.html?ep=${ep.id}">Détails de l'épisode</a>
+        <a class="btn ghost" href="#episodes">Tous les épisodes</a>
+      </div>
+    </div>`;
+
+  document.getElementById("ep-list").innerHTML = EPISODES.map(e => `
+    <article class="ep">
+      ${cover(e.image, e.title)}
+      <div>
+        <div class="meta">${e.number} · ${e.date}${e.duration ? " · " + e.duration : ""}</div>
+        <h3><a href="episode.html?ep=${e.id}">${e.title}</a></h3>
+        <p>${e.description}</p>
+        <a href="episode.html?ep=${e.id}">Écouter et lire l'article →</a>
+      </div>
+    </article>`).join("");
+
+  const v = document.getElementById("teaser");
+  v.src = PODCAST.teaser; v.poster = PODCAST.teaserPoster;
+  document.getElementById("promise").textContent = PODCAST.promise;
+  document.getElementById("about").textContent = PODCAST.about;
+  document.getElementById("team").textContent = "Équipe : " + PODCAST.team.join(", ");
+  document.getElementById("transparency").textContent = PODCAST.transparency;
+  document.getElementById("platforms").innerHTML = PODCAST.platforms.map(p => `<a class="btn" href="${p.url}">${p.name}</a>`).join("") +
+    `<p class="small" style="width:100%">Liens fictifs : le balado n'est pas réellement publié.</p>`;
+
+  document.getElementById("nl-form").addEventListener("submit", e => {
+    e.preventDefault();
+    document.getElementById("nl-email").value = "";
+    document.getElementById("nl-ok").hidden = false;
+  });
+</script>
+</body>
+</html>
