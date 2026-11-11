@@ -19,6 +19,7 @@
   <div class="wrap">
     <a class="brand" href="index.html"><img src="assets/favicon.png" alt=""><span style="color:inherit">IA <span>à</span> découvert</span></a>
     <nav>
+      <a href="#bande-annonce">Bande-annonce</a>
       <a href="#episodes">Épisodes</a>
       <a href="#a-propos">À propos</a>
       <a href="#infolettre">Infolettre</a>
@@ -28,19 +29,23 @@
 </header>
 
 <main>
-  <section>
-    <div class="wrap hero" id="hero"></div>
+  <section class="teaser" id="bande-annonce">
+    <div class="wrap">
+      <div class="eyebrow">Bande-annonce</div>
+      <h2>Le balado en 40 secondes</h2>
+      <div class="player">
+        <video id="teaser" autoplay muted loop playsinline preload="auto"></video>
+        <button class="sound" id="sound" type="button" aria-pressed="false">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path id="wave" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9l5 6M21 9l-5 6"/></svg>
+          <span id="sound-label">Activer le son</span>
+        </button>
+      </div>
+      <p id="promise"></p>
+    </div>
   </section>
 
-  <section class="teaser">
-    <div class="wrap">
-      <div>
-        <div class="eyebrow" style="color:var(--sand)">Bande-annonce</div>
-        <h2>Le balado en 30 secondes</h2>
-        <p id="promise"></p>
-      </div>
-      <video id="teaser" controls playsinline preload="metadata"></video>
-    </div>
+  <section>
+    <div class="wrap hero" id="hero"></div>
   </section>
 
   <section id="episodes">
@@ -131,7 +136,15 @@
     </article>`).join("");
 
   const v = document.getElementById("teaser");
-  v.src = PODCAST.teaser; v.poster = PODCAST.teaserPoster;
+  v.muted = true; v.poster = PODCAST.teaserPoster; v.src = PODCAST.teaser; v.play().catch(() => {});
+  const btn = document.getElementById("sound");
+  btn.addEventListener("click", () => {
+    v.muted = !v.muted;
+    if (!v.muted) v.play();
+    btn.setAttribute("aria-pressed", String(!v.muted));
+    document.getElementById("sound-label").textContent = v.muted ? "Activer le son" : "Couper le son";
+    document.getElementById("wave").setAttribute("d", v.muted ? "M16 9l5 6M21 9l-5 6" : "M16 8a5 5 0 0 1 0 8M19 5a9 9 0 0 1 0 14");
+  });
   document.getElementById("promise").textContent = PODCAST.promise;
   document.getElementById("about").textContent = PODCAST.about;
   document.getElementById("about-logo").src = PODCAST.cover;
