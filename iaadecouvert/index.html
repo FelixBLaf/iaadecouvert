@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>IA à découvert | Balado de Boussole IA</title>
 <meta name="description" content="IA à découvert, le balado de Boussole IA. Projet étudiant fictif, SIA2020, Université de Montréal.">
-<link rel="icon" href="assets/picto.svg">
+<link rel="icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="style.css">
@@ -17,7 +17,7 @@
 
 <header>
   <div class="wrap">
-    <a class="brand" href="index.html">IA <span>à</span> découvert</a>
+    <a class="brand" href="index.html"><img src="assets/favicon.png" alt=""><span style="color:inherit">IA <span>à</span> découvert</span></a>
     <nav>
       <a href="#episodes">Épisodes</a>
       <a href="#a-propos">À propos</a>
@@ -53,6 +53,7 @@
   <section id="a-propos">
     <div class="wrap two">
       <div>
+        <img class="about-logo" id="about-logo" alt="Logo IA à découvert">
         <div class="eyebrow">Nouveau ici ?</div>
         <h2 style="margin-top:8px">À propos du balado</h2>
         <p id="about"></p>
@@ -101,7 +102,7 @@
 <script src="data.js"></script>
 <script>
   const ep = EPISODES[0];
-  const cover = (src, alt) => `<div class="cover"><img src="${src || PODCAST.cover}" alt="${alt}"></div>`;
+  const cover = (src, alt) => src ? `<div class="thumb"><img src="${src}" alt="${alt}"></div>` : `<div class="cover"><img src="${PODCAST.cover}" alt="${alt}"></div>`;
   const player = (src) => src ? `<audio controls preload="none" src="${src}"></audio>` : `<span class="soon">Audio bientôt disponible</span>`;
 
   document.getElementById("hero").innerHTML = `
@@ -133,6 +134,7 @@
   v.src = PODCAST.teaser; v.poster = PODCAST.teaserPoster;
   document.getElementById("promise").textContent = PODCAST.promise;
   document.getElementById("about").textContent = PODCAST.about;
+  document.getElementById("about-logo").src = PODCAST.cover;
   document.getElementById("team").textContent = "Équipe : " + PODCAST.team.join(", ");
   document.getElementById("transparency").textContent = PODCAST.transparency;
   document.getElementById("platforms").innerHTML = PODCAST.platforms.map(p => `<a class="btn" href="${p.url}">${p.name}</a>`).join("") +
