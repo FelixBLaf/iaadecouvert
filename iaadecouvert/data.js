@@ -28,7 +28,7 @@ const EPISODES = [
     // Provisional description (50 à 150 caractères), to replace with the final one
     description: "Critères pour décider, regards croisés du client et du commerçant, et une grille en trois questions.",
     image: "assets/Equipe5-Miniature-Ep1.jpg",
-    audio: "assets/Equipe5-Episode1.mp3",
+    audio: "Equipe5-Episode1.mp3",
     article: "",                      // HTML string of the blog article (600 à 900 mots)
     transcript: "",                   // plain text, paragraphs separated by blank lines
     sources: [],                      // ["Auteur (2026). Titre. URL", ...]
@@ -41,7 +41,7 @@ const EPISODES = [
     title: "Idées d'abord, IA ensuite : la créativité d'équipe",
     description: "Comment garder le ton et le style de son entreprise quand l'IA entre dans le processus créatif ?",
     image: "assets/Equipe5-Miniature-Ep2.jpg",
-    audio: "assets/Equipe5-Episode2.mp3",
+    audio: "Equipe5-Episode2.mp3",
     article: "",
     transcript: "",
     sources: [],
