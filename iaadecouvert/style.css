@@ -35,10 +35,10 @@ h2 { font-size: 34px; margin-bottom: 28px; }
 .meta { color: var(--muted); font-size: 14px; font-weight: 600; }
 
 /* hero */
-.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.hero { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 48px; align-items: center; }
 .cover { aspect-ratio: 1; background: var(--navy); border-radius: 12px; overflow: hidden; }
 .cover img { width: 100%; height: 100%; object-fit: cover; }
-.thumb { aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: var(--sand); }
+.thumb { aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--sand); }
 .thumb img { width: 100%; height: 100%; object-fit: cover; }
 .about-logo { width: 220px; border-radius: 12px; margin-bottom: 20px; }
 .hero h1 { font-size: clamp(34px, 5vw, 56px); margin: 10px 0 14px; }
@@ -63,7 +63,7 @@ audio { width: 100%; margin-top: 18px; }
 
 /* episode list */
 .episodes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
-.ep { display: flex; flex-direction: column; gap: 16px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+.ep { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 20px; align-items: start; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
 .ep .thumb { border-radius: 8px; }
 .ep h3 { font-size: 22px; margin: 6px 0 8px; }
 .ep h3 a { color: inherit; text-decoration: none; }
@@ -102,6 +102,8 @@ footer img { width: 240px; }
 footer p { margin: 4px 0; color: var(--sand); }
 
 @media (max-width: 800px) {
+  .hero .thumb { max-width: 360px; }
+  .ep { grid-template-columns: 110px minmax(0, 1fr); }
   .hero, .two, .episodes { grid-template-columns: minmax(0, 1fr); }
 
   section { padding: 44px 0; }

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Épisode | IA à découvert</title>
-<link rel="icon" href="assets/picto.svg">
+<link rel="icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="style.css">
@@ -16,7 +16,7 @@
 
 <header>
   <div class="wrap">
-    <a class="brand" href="index.html">IA <span>à</span> découvert</a>
+    <a class="brand" href="index.html"><img src="assets/favicon.png" alt=""><span style="color:inherit">IA <span>à</span> découvert</span></a>
     <nav>
       <a href="index.html#episodes">Épisodes</a>
       <a href="index.html#a-propos">À propos</a>
@@ -69,7 +69,7 @@
   document.title = ep.title + " | IA à découvert";
 
   document.getElementById("hero").innerHTML = `
-    <div class="cover"><img src="${ep.image || PODCAST.cover}" alt="${ep.title}"></div>
+    ${ep.image ? `<div class="thumb"><img src="${ep.image}" alt="${ep.title}"></div>` : `<div class="cover"><img src="${PODCAST.cover}" alt="${ep.title}"></div>`}
     <div>
       <div class="meta">${ep.number} · ${ep.date}${ep.duration ? " · " + ep.duration : ""}</div>
       <h1>${ep.title}</h1>
