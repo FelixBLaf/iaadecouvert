@@ -83,7 +83,12 @@
   document.title = ep.title + " | IA à découvert";
 
   document.getElementById("hero").innerHTML = `
-    ${ep.image ? `<div class="thumb"><img src="${ep.image}" alt="${ep.title}"></div>` : `<div class="cover"><img src="${PODCAST.cover}" alt="${ep.title}"></div>`}
+    ${ep.image ? `<div class="thumb${ep.clip ? " has-clip" : ""}" id="thumb">
+        <img src="${ep.image}" alt="${ep.title}">
+        ${ep.clip ? `<video id="clip" muted playsinline loop preload="none" src="${ep.clip}"></video>
+        <span class="clip-hint">▶ Extrait vidéo</span>
+        <button class="clip-sound" id="clip-sound" type="button">Activer le son</button>` : ""}
+      </div>` : `<div class="cover"><img src="${PODCAST.cover}" alt="${ep.title}"></div>`}
     <div>
       <div class="meta">${ep.number} · ${ep.date}${ep.duration ? " · " + ep.duration : ""}</div>
       <h1>${ep.title}</h1>
@@ -101,6 +106,17 @@
   document.getElementById("sources").innerHTML = ep.sources.length
     ? ep.sources.map(s => `<li>${s}</li>`).join("")
     : `<li>${soon("Sources")}</li>`;
+  // clip: plays on hover (muted), tap to play on touch screens
+  const th = document.getElementById("thumb"), clip = document.getElementById("clip");
+  if (clip) {
+    const start = () => { th.classList.add("playing"); clip.play().catch(() => {}); };
+    const stop = () => { th.classList.remove("playing"); clip.pause(); clip.currentTime = 0; clip.muted = true; snd.textContent = "Activer le son"; };
+    const snd = document.getElementById("clip-sound");
+    th.addEventListener("mouseenter", start);
+    th.addEventListener("mouseleave", stop);
+    th.addEventListener("click", e => { if (e.target === snd) return; th.classList.contains("playing") ? stop() : start(); });
+    snd.addEventListener("click", () => { clip.muted = !clip.muted; snd.textContent = clip.muted ? "Activer le son" : "Couper le son"; });
+  }
   if (ep.linkedin) { document.getElementById("seen-img").src = ep.linkedin; document.getElementById("seen").hidden = false; }
   document.getElementById("people").innerHTML = ep.people.map(p =>
     `<li>${p.photo ? `<img class="initial" src="${p.photo}" alt="${p.name}">` : `<span class="initial">${p.name[0]}</span>`}<div><strong>${p.name}</strong><span>${p.role}</span></div></li>`).join("");
