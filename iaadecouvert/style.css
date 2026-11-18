@@ -103,6 +103,14 @@ summary { font-weight: 700; cursor: pointer; }
 .people li div span { display: block; color: var(--muted); font-size: 14px; line-height: 1.35; }
 .ep .with { font-size: 14px; font-weight: 600; color: var(--ink); }
 
+/* seen on LinkedIn */
+.seen { background: #EEF2F7; }
+.seen-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: 56px; align-items: center; }
+.seen-text { font-size: 19px; max-width: 26em; }
+.post { margin: 0; transform: rotate(-1.2deg); }
+.post img { width: 100%; border-radius: 14px; box-shadow: 0 1px 2px rgba(15,41,68,.08), 0 18px 40px rgba(15,41,68,.16); }
+@media (max-width: 800px) { .seen-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; } .post { transform: none; max-width: 420px; } }
+
 /* footer */
 footer { background: var(--navy); color: var(--cream); padding: 48px 0; font-size: 14px; }
 footer .wrap { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; align-items: center; }

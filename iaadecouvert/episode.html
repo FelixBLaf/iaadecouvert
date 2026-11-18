@@ -37,6 +37,15 @@
     <h2>L'article</h2>
     <div class="article" id="article"></div>
   </div></section>
+  <section class="seen" id="seen" hidden><div class="wrap seen-grid">
+    <div>
+      <div class="eyebrow">Vu sur LinkedIn</div>
+      <h2 style="margin:8px 0 12px">L'épisode en une publication</h2>
+      <p class="seen-text">Les trois repères de l'épisode, tels que Boussole IA les a partagés avec sa communauté.</p>
+      <p class="small">Maquette de publication réalisée pour ce projet étudiant fictif.</p>
+    </div>
+    <figure class="post"><img id="seen-img" alt="Publication LinkedIn de Boussole IA présentant l'épisode"></figure>
+  </div></section>
   <section><div class="wrap">
     <details class="transcript">
       <summary>Transcription intégrale</summary>
@@ -92,6 +101,7 @@
   document.getElementById("sources").innerHTML = ep.sources.length
     ? ep.sources.map(s => `<li>${s}</li>`).join("")
     : `<li>${soon("Sources")}</li>`;
+  if (ep.linkedin) { document.getElementById("seen-img").src = ep.linkedin; document.getElementById("seen").hidden = false; }
   document.getElementById("people").innerHTML = ep.people.map(p =>
     `<li><span class="initial">${p.name[0]}</span><div><strong>${p.name}</strong><span>${p.role}</span></div></li>`).join("");
   document.getElementById("voice-note").textContent = PODCAST.voiceNote;
