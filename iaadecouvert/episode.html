@@ -29,6 +29,11 @@
 <main>
   <section><div class="wrap hero" id="hero"></div></section>
   <section><div class="wrap">
+    <h2>Les intervenant·es</h2>
+    <ul class="people" id="people"></ul>
+    <p class="small" id="voice-note"></p>
+  </div></section>
+  <section><div class="wrap">
     <h2>L'article</h2>
     <div class="article" id="article"></div>
   </div></section>
@@ -84,6 +89,9 @@
   document.getElementById("sources").innerHTML = ep.sources.length
     ? ep.sources.map(s => `<li>${s}</li>`).join("")
     : `<li>${soon("Sources")}</li>`;
+  document.getElementById("people").innerHTML = ep.people.map(p =>
+    `<li><span class="initial">${p.name[0]}</span><div><strong>${p.name}</strong><span>${p.role}</span></div></li>`).join("");
+  document.getElementById("voice-note").textContent = PODCAST.voiceNote;
   document.getElementById("transparency").textContent = PODCAST.transparency;
 
   const other = EPISODES.find(e => e.id !== ep.id);

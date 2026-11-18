@@ -131,6 +131,7 @@
         <div class="meta">${e.number} · ${e.date}${e.duration ? " · " + e.duration : ""}</div>
         <h3><a href="episode.html?ep=${e.id}">${e.title}</a></h3>
         <p>${e.description}</p>
+        <p class="with">Avec ${e.people.map(p => p.name).join(", ").replace(/, ([^,]*)$/, " et $1")}</p>
         <a href="episode.html?ep=${e.id}">Écouter et lire l'article →</a>
       </div>
     </article>`).join("");
