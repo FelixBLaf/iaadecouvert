@@ -108,7 +108,7 @@
 <script>
   const ep = EPISODES[0];
   const cover = (src, alt) => src ? `<div class="thumb"><img src="${src}" alt="${alt}"></div>` : `<div class="cover"><img src="${PODCAST.cover}" alt="${alt}"></div>`;
-  const player = (src) => src ? `<audio controls preload="none" src="${src}"></audio>` : `<span class="soon">Audio bientôt disponible</span>`;
+  const player = (src) => src ? `<audio controls preload="none" src="${src}"></audio><p class="small load-note" hidden>Chargement de l\'épisode… la barre de lecture sera active dans quelques secondes.</p>` : `<span class="soon">Audio bientôt disponible</span>`;
 
   document.getElementById("hero").innerHTML = `
     ${cover(ep.image, ep.title)}
@@ -160,5 +160,6 @@
     document.getElementById("nl-ok").hidden = false;
   });
 </script>
+<script src="player.js"></script>
 </body>
 </html>
