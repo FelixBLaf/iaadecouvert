@@ -110,6 +110,10 @@ img.initial { object-fit: cover; }
 .seen-text { font-size: 19px; max-width: 26em; }
 .post { margin: 0; transform: rotate(-1.2deg); }
 .post img { width: 100%; border-radius: 14px; box-shadow: 0 1px 2px rgba(15,41,68,.08), 0 18px 40px rgba(15,41,68,.16); }
+footer .wrap.declaration { display: block; margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(232,215,184,.25); }
+footer .declaration h3 { font-size: 15px; color: var(--cream); margin: 0 0 10px; letter-spacing: 0; }
+footer .declaration p { font-size: 13px; line-height: 1.6; color: rgba(250,247,242,.72); max-width: 70em; margin: 0 0 6px; }
+
 @media (max-width: 800px) { .seen-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; } .post { transform: none; max-width: 420px; } }
 
 /* episode clip on hover */
