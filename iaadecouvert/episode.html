@@ -103,7 +103,7 @@
     : `<li>${soon("Sources")}</li>`;
   if (ep.linkedin) { document.getElementById("seen-img").src = ep.linkedin; document.getElementById("seen").hidden = false; }
   document.getElementById("people").innerHTML = ep.people.map(p =>
-    `<li><span class="initial">${p.name[0]}</span><div><strong>${p.name}</strong><span>${p.role}</span></div></li>`).join("");
+    `<li>${p.photo ? `<img class="initial" src="${p.photo}" alt="${p.name}">` : `<span class="initial">${p.name[0]}</span>`}<div><strong>${p.name}</strong><span>${p.role}</span></div></li>`).join("");
   document.getElementById("voice-note").textContent = PODCAST.voiceNote;
   document.getElementById("transparency").textContent = PODCAST.transparency;
 
